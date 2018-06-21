@@ -1,7 +1,7 @@
 ﻿Function Add-DefaultAclSubnet {
 <#
 .SYNOPSIS
-    Adds a default ACL entry to existing ACL Object
+    Adds an allow for the CSN default port ranges on a specified subnet.
 .NOTES
     Requires F5-LTM modules from github
 #>
