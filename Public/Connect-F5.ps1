@@ -15,7 +15,7 @@
 
         )
 
-    $creds = Get-Credential
+    $creds = Get-Credential -Message "Please enter credentials to access the F5 load balancer"
 
    
     $Global:F5Session = New-F5Session -LTMName $ip -LTMCredentials $creds -Default -PassThru
