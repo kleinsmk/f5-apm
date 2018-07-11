@@ -15,7 +15,12 @@
 
         [Alias('aws subnet')]
         [Parameter(Mandatory=$true)]
-        [string]$subnet=''
+        [string]$subnet='',
+
+        [Alias('acl order')]
+        [Parameter(Mandatory=$true)]
+        [ValidateRange(5021,9999)] 
+        [int]$aclOrder=''
 
     )
     begin {
@@ -27,6 +32,7 @@
     "kind": "tm:apm:acl:aclstate",
     "name": "$name",
     "partition": "Common",
+    "aclOrder": "$aclOrder",
     "entries": [
         {
             "action": "allow",
