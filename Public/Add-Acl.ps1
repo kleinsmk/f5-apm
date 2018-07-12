@@ -92,9 +92,37 @@
 	        'srcSubnet' = '0.0.0.0/0'
         }
 
-            $acl.entries += $baseAclEntry
+            # append the entires if acls already exist
+            if ( -not $acl.entries ) { 
+            
 
-            $JSONBody = $acl | ConvertTo-Json -Depth 10
+                $baseAclEntry = [PSCustomObject]@{'entries' = @(
+		                [PSCustomObject]@{
+			            'action' = "$action"
+			            'dstEndPort' = "$dstEndPort"
+			            'dstStartPort' = "$dstStartPort"
+			            'dstSubnet' = "$dstSubnet"
+			            'log' = 'packet'
+			            'protocol' = 6
+			            'scheme' = 'any'
+			            'srcEndPort' = 0
+			            'srcStartPort' = 0
+			            'srcSubnet' = '0.0.0.0/0'}
+	                )}
+
+                    $JSONBody = $baseAclEntry | ConvertTo-Json -Depth 10
+            
+            }
+
+ 
+            else { 
+                   
+                   
+                $acl.entries += $baseAclEntry
+                $JSONBody = $acl | ConvertTo-Json -Depth 10 
+
+                }
+            
 
             $uri = $F5Session.BaseURL.Replace('/ltm/',"/apm/acl/~Common~$name")
             $response = Invoke-RestMethodOverride -Method Patch -Uri $URI -Body $JSONBody -ContentType 'application/json' -WebSession $F5Session.WebSession
