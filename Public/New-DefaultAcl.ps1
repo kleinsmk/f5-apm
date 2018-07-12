@@ -15,18 +15,25 @@
 
         [Alias('aws subnet')]
         [Parameter(Mandatory=$true)]
-        [string]$subnet=''
+        [string]$subnet='',
+
+        [Alias('acl order')]
+        [Parameter(Mandatory=$false)]
+        [ValidateRange(5021,9999)] 
+        [int]$aclOrder=''
 
     )
     begin {
         #Test that the F5 session is in a valid format
         Test-F5Session($F5Session)
         
-        $JSONBody = @"
+        #if statement below adds acl order if param is present or blank if false
+     $JSONBody = @"
 {
     "kind": "tm:apm:acl:aclstate",
     "name": "$name",
     "partition": "Common",
+    $(if ( -not [string]::IsNullOrEmpty($aclOrder)) { "`"aclOrder`": `"$aclOrder`","})
     "entries": [
         {
             "action": "allow",
