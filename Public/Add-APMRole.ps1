@@ -37,18 +37,18 @@ Add-APMRole -name "acl_1_act_full_resource_assign_ag" -acl "myACL" -group "my_LD
     [cmdletBinding()]
     param(
         
-        [Alias("APM Role Name")]
-        [Parameter(Mandatory=$true)]
-        [string[]]$name='',
-
+        
         [Alias("existing acl Name")]
         [Parameter(Mandatory=$true)]
         [string[]]$acl='',
 
         [Alias("LDAP group")]
         [Parameter(Mandatory=$true)]
-        [string[]]$group=''
+        [string[]]$group='',
 
+        [Alias("APM Role Name")]
+        [Parameter(Mandatory=$false)]
+        [string[]]$name='acl_1_act_full_resource_assign_ag'
 
     )
     begin {
@@ -73,7 +73,7 @@ Add-APMRole -name "acl_1_act_full_resource_assign_ag" -acl "myACL" -group "my_LD
             $role.rules += $newRoleMapping
 
             $JSONBody = $role | ConvertTo-Json -Depth 10
-            $JSONBody
+            
             $uri = $F5Session.BaseURL.Replace('/ltm/','/apm/policy/agent/resource-assign/~Common~') + $name
             $response = Invoke-RestMethodOverride -Method Patch -Uri $URI -Body $JSONBody -ContentType 'application/json' -WebSession $F5Session.WebSession
             $response
