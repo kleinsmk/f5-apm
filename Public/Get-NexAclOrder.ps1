@@ -18,7 +18,7 @@
             $acl = Invoke-RestMethodOverride -Method Get -Uri $URI -WebSession $F5Session.WebSession
             $sorted = $acl.items.aclorder | Sort-Object
             #return 2nd to last item as we have a deny at acl order 10000
-            $sorted[-2]
+            ($sorted[-2]) + 1
         }
         
 }
