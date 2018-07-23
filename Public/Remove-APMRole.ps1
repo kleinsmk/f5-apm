@@ -27,7 +27,7 @@ The existing ACL we want to remove from the existing mapping
 
 Remove mapping for ACL myACL on the prod F5 to my_LDAPgroup
 
-Remove-APMRole -acl "myACL" -group "my_LDAPgroup"
+Remove-APMRole -acl "myACL" -group "myACL"
 
 
 #>
