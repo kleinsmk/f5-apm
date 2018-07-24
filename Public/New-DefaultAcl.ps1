@@ -145,6 +145,18 @@
         },
         {
             "action": "allow",
+            "dstEndPort": 3389,
+            "dstStartPort": 3389,
+            "dstSubnet": "$subnet",
+            "log": "packet",
+            "protocol": 17,
+            "scheme": "any",
+            "srcEndPort": 0,
+            "srcStartPort": 0,
+            "srcSubnet": "0.0.0.0/0"
+        },
+        {
+            "action": "allow",
             "dstEndPort": 5900,
             "dstStartPort": 5900,
             "dstSubnet": "$subnet",
