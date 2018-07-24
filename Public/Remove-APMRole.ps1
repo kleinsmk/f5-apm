@@ -44,6 +44,7 @@ Remove-APMRole -acl "myACL" -group "myACL"
         [Parameter(Mandatory=$true)]
         [string]$group='',
 
+        #this is set as default dev for testing change to prod when stable
         [Alias("APM Role Name")]
         [Parameter(Mandatory=$false)]
         [string]$name='aggregate_acl_act_full_resource_assign_ag'
