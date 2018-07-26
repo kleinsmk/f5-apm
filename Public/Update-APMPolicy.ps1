@@ -2,6 +2,12 @@
 <#
 .SYNOPSIS
     Applies changes to existing APM policy
+.PARAMETER name
+    The APM policy to adjust.  This defaults to our current production value but can be passed in if it changes.
+.EXAMPLE
+    Update-APMPolicy 
+.EXAMPLE
+    Update-APMPolicy -name "CSN_VPN_Streamlined"
 .NOTES
     Requires F5-LTM modules fro
     m github to connect
@@ -10,8 +16,8 @@
     param(
         
         [Alias("APM Policy Name")]
-        [Parameter(Mandatory=$true)]
-        [string[]]$name=''
+        [Parameter(Mandatory=$false)]
+        [string[]]$name='CSN_VPN_Streamlined'
 
 
     )

@@ -1,8 +1,26 @@
 ﻿Function New-DefaultAcl {
 <#
 .SYNOPSIS
-    Returns Single ACL object
-.NOTES
+   Creates an entire set of CSN default subnet ports to an existing ACL.
+   Current ports are TCP 20,22, 80, 443, 1443, 1521, 1532, 3306, 3389 UPD & TCP, 5900, 7331, 8000, 8081, 8443, 8086, 27017, 139-135 UDP, ICMP
+
+.PARAMETER name
+	The existing ACL name
+.PARAMETER dstSubnet
+    The subnet of the network to add.  /32 specifies a single ip instead of a network.
+.PARAMETER aclOrder
+    the ACL order you wish to insert the new ACL at.  Omitting this property uses the next available by deafult.
+
+.EXAMPLE
+	New-DefaultAcl -name aclName -dstSubnet 10.22.33.0/24 -aclOrder 5020
+
+	Creates a new default port range to the ACL 'aclName' on the 10.22.33.0/24 network at aclOrder 5020
+.EXAMPLE
+	New-DefaultAcl -name aclName -dstSubnet 10.22.33.234/32
+
+	Creates a new default port range to ACL 'aclName' on Host 10.22.33.234 with the next free aclOrder
+.EXAMPLE
+   .NOTES
    
     Requires F5-LTM modules from github
 #>

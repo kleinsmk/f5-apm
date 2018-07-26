@@ -1,7 +1,23 @@
 ﻿Function New-EmptyAcl {
 <#
 .SYNOPSIS
-    Adds a single blank ACL to configure later
+    Adds a single blank ACL to configure later. You would use this when a client requires only a certain set of ports
+    like you might encounter when doing an on prem only config.
+.PARAMETER name
+    The new ACL name you wish to use
+.PARAMETER aclOrder
+    The aclOrder you wish the the new ACL to have 
+.EXAMPLE
+    New-EmptyAcl -name Blue_Group -aclOrder 5026
+
+    Creates a new blank ACL named Blue_Group with aclOrder 5026
+
+.EXAMPLE
+     New-EmptyAcl -name Blue_Group -aclOrder 5026
+     Add-Acl -name Blue_Group -action allow -dstStartPort 8888 -dstEndPort 8888 -dstSubnet 10.128.1.16/32 
+     Add-Acl -name Blue_Group -action allow -dstStartPort 8888 -dstEndPort 8888 -dstSubnet 10.128.1.29/32 
+
+     Shows use case where you create a new ACL to allow port 8888 on two seperate networks only
 .NOTES
    
     Requires F5-LTM modules from github

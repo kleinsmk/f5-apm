@@ -2,7 +2,14 @@
 <#
 .SYNOPSIS
     Returns APM Policy Ojbect
-    #CSN_VPN_Streamlined
+    CSN_VPN_Streamlined is an example
+.DESCRIPTION 
+    Returns APM policy object so that manipulations like applying policies can be done.
+
+.EXAMPLE
+
+Get-APMPolicy -name "CSN_VPN_Streamlined"
+
 .NOTES
    
     Requires F5-LTM modules from github

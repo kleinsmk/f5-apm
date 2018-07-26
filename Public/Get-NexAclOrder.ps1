@@ -1,10 +1,17 @@
 ﻿Function Get-NextAclOrder {
 <#
 .SYNOPSIS
-    Returns the acl order number one less than 10,000
+    Returns the next open acl order number
+.DESCRIPTION
+    In many production environments it is customary to have a ANY ANY Deny as the final rulset to explicitly deny any
+    network traffic that isn't otherwise stated.  This cmdlet allow the user to get the next free acl order number
+    less than 10,000, which is useful in keeping multiple F5 ACL sets syncd across devices without conflict.
 .NOTES
-   
     Requires F5-LTM modules from github
+.Example
+    Get-NextAclOrder
+
+    Returns the next free acl order number.
 #>
 
 

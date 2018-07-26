@@ -1,18 +1,22 @@
 ﻿Function Add-APMRole {
 <#
 .SYNOPSIS
-    Adds a single ACL entry to existing ACL Role Object.  This function is hard coded for LDAP lookups. Change as needed.
+Adds a single ACL entry to existing ACL Role Object.  This function is hard coded for LDAP lookups. Change as needed.
 
 .DESCRIPTION
 F5 stores VPN user ACL to LDAP role mappings in what they call an aggreagte reasource assign group.
 
-In our shop we link ACL permissions to LDAP user groups.  This will append 
+In our shop we link ACL permissions to LDAP user groups.  
+This will append:
+
 'expression' = "expr { [mcget {session.ldap.last.attr.memberOf}] contains "CN=ldapgroupname," }
+
 to the array of mappings tied to each specific ACL.
 
 .PARAMETER name
 
-The name of the aggregate reasrouce group assigned to the VPN access profile.
+The name of the aggregate reasrouce group assigned to the VPN access profile.  This defaults to the production instance and can be omitted.
+
 These can be found at the REST endpoint /apm/policy/agent/resource-assign/
 
 As of 6/18 dev was using "aggregate_acl_act_full_resource_assign_ag" and prod was using acl_1_act_full_resource_assign_ag
@@ -26,10 +30,13 @@ The existing ACL we want to map and LDAP group to.
 The existing LDAP group we want to map to and ACL
 
 .EXAMPLE
+Add-APMRole -acl "myACL" -group "my_LDAPgroup"
 
-Add mapping for ACL myACL on the prod F5 to my_LDAPgroup
+Adds a mapping for existing ACL myACL to my_LDAPgroup in the aggregate reasource assign macro in the fashion:
 
-Add-APMRole -name "acl_1_act_full_resource_assign_ag" -acl "myACL" -group "my_LDAPgroup"
+'expression' = "expr { [mcget {session.ldap.last.attr.memberOf}] contains "CN=my_LDAPgroup," }
+
+Note that omitting name paramter defaults to production 'acl_1_act_full_resource_assign_ag' group.
 
 
 #>

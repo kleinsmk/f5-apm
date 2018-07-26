@@ -9,7 +9,7 @@
 
 .PARAMETER action
 
-    Allow or Deny for ACL
+    'Allow' or 'Deny' for ACL
 
 
 .PARAMETER dstStartPort
@@ -23,28 +23,29 @@
 .PARAMETER dstSubnet
 
     Destination subnet in format 192.168.1.1/32
-    
-    Single ip ACL changes are represented by /32 Larger network ranges can be used by passing the correct CIDR notation.
+    Single ip ACL changes are represented by /32 
+    Larger network ranges can be used by passing the correct CIDR notation.
 
 
 .EXAMPLE
-
-    Add a new acl for a single port.
+    Add-Acl -name Existing_ACL_Name -action allow -dstStartPort 80 -dstEndPort 80 -dstSubnet 192.168.1.1/24
     
+    Add a New ACL for a single port and network range /24
+.EXAMPLE
+
+    Add-Acl -name Existing_ACL_Name -action allow -dstStartPort 80 -dstEndPort 8000 -dstSubnet 192.168.1.1/24
+
+    Add a New ACL for a port range 80-8000 and network range /24
+.Example
     Add-Acl -name Existing_ACL_Name -action allow -dstStartPort 80 -dstEndPort 80 -dstSubnet 192.168.1.1/32
 
-.EXAMPLE
-
-    Add a new acl for a port range.
-
-    Add-Acl -name Existing_ACL_Name -action allow -dstStartPort 80 -dstEndPort 8000 -dstSubnet 192.168.1.1/32
-
+    Adds a New ACL for port 80 to a SINGLE IP
 
 #>
     [cmdletBinding()]
     param(
         
-        [Alias("existing acl Name")]
+        [Alias("Existing acl Name")]
         [Parameter(Mandatory=$true)]
         [string[]]$name='',
 
