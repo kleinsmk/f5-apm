@@ -1,7 +1,7 @@
 ﻿Function Remove-APMRole {
 <#
 .SYNOPSIS
-    Removes a single ACL entry mapped existing ACL Role Object.  This function is hard coded for LDAP lookups. Change as needed.
+    Removes an acl mapping currenlty in a reasource assign group.
 
 .DESCRIPTION
 F5 stores VPN user ACL to LDAP role mappings in what they call an aggreagte reasource assign group.
@@ -13,21 +13,20 @@ from the array of mappings tied to each specific ACL.
  
 
 .PARAMETER name
-
 The name of the aggregate reasrouce group assigned to the VPN access profile.
 These can be found at the REST endpoint /apm/policy/agent/resource-assign/
-
-As of 6/18 dev was using "aggregate_acl_act_full_resource_assign_ag" and prod was using acl_1_act_full_resource_assign_ag
+This is set by default to production values
 
 .PARAMETER acl
 
 The existing ACL we want to remove from the existing mapping
 
 .EXAMPLE
+Remove-APMRole -acl "myACL" -group "myACL"
 
 Remove mapping for ACL myACL on the prod F5 to my_LDAPgroup
 
-Remove-APMRole -acl "myACL" -group "myACL"
+
 
 
 #>

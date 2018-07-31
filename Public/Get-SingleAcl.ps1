@@ -2,9 +2,17 @@
 <#
 .SYNOPSIS
     Returns Single ACL object
+.DESCRIPTION
+    Allows the user to quickly return a single ACL as refernced by name.  A good way to check for existing ACLs
+    in addition to programatic ACL manipulation.
+.PARAMETER name
+    ACL name
 .NOTES
-   
     Requires F5-LTM modules from github
+.EXAMPLE
+    Get-SingleAcl -name myACL
+
+    Returns the ACL object for ACL myACL
 #>
     [cmdletBinding()]
     param(

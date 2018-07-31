@@ -1,7 +1,13 @@
 ﻿Function Remove-Acl {
 <#
 .SYNOPSIS
-    Removes existing ACL object
+    Removes existing ACL object.  ACL must not be linked to a reasource group
+.PARAMETER name
+    Existing ACL name
+.EXAMPLE
+    Remove-ACL -name My_ACL
+
+    Removes ACL My_ACL
 .NOTES
    
     Requires F5-LTM modules from github

@@ -2,9 +2,15 @@
 <#
 .SYNOPSIS
     Returns Single APM reasource assign role object
+.DESCRIPTION
+    APM stores ACL role mappings in a container object called a resrouce assign group.  In order to maniupulate the
+    contents of its roles and rulsets you need to first retrieve it from the F5 via its name.
+.PARAMETER name
+    The name of the existing resource assign group.  These can be found at rest endpoint /apm/policy/agent/resource-assign/
 .NOTES
-   
     Requires F5-LTM modules from github
+.EXAMPLE
+    Get-APMRole -name acl_1_act_full_resource_assign_ag
 #>
     [cmdletBinding()]
     param(

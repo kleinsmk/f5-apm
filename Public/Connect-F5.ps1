@@ -1,10 +1,18 @@
 ﻿function Connect-F5 {
 <#
 .SYNOPSIS
-    Helper function to connect to an F5 using POSH F5-LTM module
-.NOTES
+    Helper function to connect to an F5 using POSH F5-LTM module,  This is required as the f5-apm module
+    leverages the work of https://github.com/joel74/POSH-LTM-Rest for connecting and inovking ssl based Rest Requests
+.DESCRIPTION
     Creates a global varibale so that add-on functions can utilise the F5-LTM object for connectons
     Requires F5-LTM modules from github
+.PARAMETER ip
+    The ip or dns entry of the f5 to connect to.
+
+.PARAMETER TokenLifeSpan
+    The token lifespan for connection.  Possibly in seconds no documenation is availbale.  The default is set.
+.Example
+    Connect-F5 -ip yourf5dns.workisfun.com
 #>
 
     param(
