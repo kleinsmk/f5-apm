@@ -46,7 +46,7 @@ Remove mapping for ACL myACL on the prod F5 to my_LDAPgroup
         #this is set as default dev for testing change to prod when stable
         [Alias("APM Role Name")]
         [Parameter(Mandatory=$false)]
-        [string]$name='aggregate_acl_act_full_resource_assign_ag'
+        [string]$name='acl_1_act_full_resource_assign_ag'
 
     )
     begin {
