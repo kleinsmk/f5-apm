@@ -29,5 +29,5 @@
     #Force TLS for connection as onprem uses only tls12
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-    $Global:F5Session = New-F5Session -LTMName $ip -LTMCredentials $creds -Default -PassThru
+    $Global:F5Session = New-F5Session -LTMName $ip -LTMCredentials $creds -TokenLifespan $TokenLifespan -Default -PassThru
 }
