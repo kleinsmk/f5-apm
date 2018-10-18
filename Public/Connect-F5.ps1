@@ -20,14 +20,28 @@
             [Alias('F5 IP Address')]
             [Parameter(Mandatory=$true)]
             [string]$ip='',
-            [ValidateRange(300,36000)][int]$TokenLifespan=3600
+            [ValidateRange(300,36000)][int]$TokenLifespan=3600,
+
+            [Parameter(Mandatory=$false)]
+            [System.Management.Automation.PSCredential]$creds
+            
 
         )
 
+    #
+    if( !($creds) ){
+
     $creds = Get-Credential -Message "Please enter credentials to access the F5 load balancer"
 
+    }
     #Force TLS for connection as onprem uses only tls12
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+    try{
     $Global:F5Session = New-F5Session -LTMName $ip -LTMCredentials $creds -TokenLifespan $TokenLifespan -Default -PassThru -ErrorAction Stop
+    }
+
+    catch{
+        Write-Warning "Could not connect to the F5.  Please check you credentials and try again."
+    }
 }
