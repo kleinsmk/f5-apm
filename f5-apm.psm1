@@ -4,7 +4,7 @@
 .DESCRIPTION  
     This module uses the F5 LTM REST API to manipulate and query
 .NOTES  
-    File Name    : F5-LTM.psm1
+    File Name    : f5-ltm.psm1
     Author       : Sky Klein
     Requires     : 
     Dependencies : Requires F5-LTM module for connections to F5
