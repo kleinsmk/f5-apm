@@ -26,6 +26,9 @@
     Single ip ACL changes are represented by /32 
     Larger network ranges can be used by passing the correct CIDR notation.
 
+.PARAMETER udp
+
+    Changes protocol type to udp.
 
 .EXAMPLE
     Add-Acl -name Existing_ACL_Name -action allow -dstStartPort 80 -dstEndPort 80 -dstSubnet 192.168.1.1/24
@@ -67,7 +70,10 @@
 
         [Alias("Subnet")]
         [Parameter(Mandatory=$true)]
-        [string []]$dstSubnet=''
+        [string []]$dstSubnet='' ,
+       
+        [Parameter()]
+        [switch]$udp
 
 
     )
@@ -90,24 +96,62 @@
                 
                 $index = $dstStartPort.IndexOf($port)
 
-                $baseAclEntry =  [PSCustomObject]@{
-	                'action' = "$action"
-	                'dstEndPort' = $dstEndPort[$index]
-	                'dstStartPort' = "$port"
-	                'dstSubnet' = "$sub"
-	                'log' = 'packet'
-	                'protocol' = 6
-	                'scheme' = 'any'
-	                'srcEndPort' = 0
-	                'srcStartPort' = 0
-	                'srcSubnet' = '0.0.0.0/0'
+                if( $udp.IsPresent ){
+
+                    $baseAclEntry =  [PSCustomObject]@{
+	                    'action' = "$action"
+	                    'dstEndPort' = $dstEndPort[$index]
+	                    'dstStartPort' = "$port"
+	                    'dstSubnet' = "$sub"
+	                    'log' = 'packet'
+	                    'protocol' = 17
+	                    'scheme' = 'any'
+	                    'srcEndPort' = 0
+	                    'srcStartPort' = 0
+	                    'srcSubnet' = '0.0.0.0/0'
+                    }
+
                 }
+
+                else {
+
+                    $baseAclEntry =  [PSCustomObject]@{
+	                    'action' = "$action"
+	                    'dstEndPort' = $dstEndPort[$index]
+	                    'dstStartPort' = "$port"
+	                    'dstSubnet' = "$sub"
+	                    'log' = 'packet'
+	                    'protocol' = 6
+	                    'scheme' = 'any'
+	                    'srcEndPort' = 0
+	                    'srcStartPort' = 0
+	                    'srcSubnet' = '0.0.0.0/0'
+                    }
+
+                }
+                
 
                 # add first acl
                 if ( -not $acl.entries ) { 
             
+                    if( $udp.IsPresent ) {
+                        $baseAclEntry = [PSCustomObject]@{'entries' = @(
+		                    [PSCustomObject]@{
+			                'action' = "$action"
+			                'dstEndPort' = $dstEndPort[$index]
+			                'dstStartPort' = "$port"
+			                'dstSubnet' = $sub
+			                'log' = 'packet'
+			                'protocol' = 17
+			                'scheme' = 'any'
+			                'srcEndPort' = 0
+			                'srcStartPort' = 0
+			                'srcSubnet' = '0.0.0.0/0'}
+	                    )}
+                    }
 
-                    $baseAclEntry = [PSCustomObject]@{'entries' = @(
+                    else {
+                        $baseAclEntry = [PSCustomObject]@{'entries' = @(
 		                    [PSCustomObject]@{
 			                'action' = "$action"
 			                'dstEndPort' = $dstEndPort[$index]
@@ -120,6 +164,8 @@
 			                'srcStartPort' = 0
 			                'srcSubnet' = '0.0.0.0/0'}
 	                    )}
+
+                    }
 
                         Add-Member -InputObject $acl -NotePropertyName entries -NotePropertyValue (New-Object System.Collections.ArrayList)  #add first acl into object so we don't hit this block again
                         $acl.entries += $baseAclEntry.entries 
