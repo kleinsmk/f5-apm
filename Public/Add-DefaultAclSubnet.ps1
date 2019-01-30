@@ -2,7 +2,7 @@
 <#
 .SYNOPSIS
    Adds an entire set of CSN default subnet ports to an existing ACL.
-   Current ports are TCP 20,22, 80, 443, 1443, 1521, 1532, 3306, 3389 UPD & TCP, 5900, 7331, 8000, 8081, 8443, 8086, 27017, 139-135 UDP, ICMP
+   Current ports are TCP 20,22, 80, 443, 1443, 1521, 1532, 3306, 3389 UPD & TCP, 5432, 5433, 5900, 7331, 8000, 8081, 8443, 8086, 27017, 139-135 UDP, ICMP
 
 .PARAMETER name
 	The existing ACL name
@@ -166,6 +166,18 @@
 	},
 	[PSCustomObject]@{
 		'action' = 'allow'
+		'dstEndPort' = 5433
+		'dstStartPort' = 5432
+		'dstSubnet' = "$dstSubnet"
+		'log' = 'packet'
+		'protocol' = 6
+		'scheme' = 'any'
+		'srcEndPort' = 0
+		'srcStartPort' = 0
+		'srcSubnet' = '0.0.0.0/0'
+	},
+	[PSCustomObject]@{
+		'action' = 'allow'
 		'dstEndPort' = 5900
 		'dstStartPort' = 5900
 		'dstSubnet' = "$dstSubnet"
@@ -176,6 +188,7 @@
 		'srcStartPort' = 0
 		'srcSubnet' = '0.0.0.0/0'
 	},
+
 	[PSCustomObject]@{
 		'action' = 'allow'
 		'dstEndPort' = 7331

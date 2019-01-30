@@ -1,18 +1,15 @@
 ﻿Function Get-AllAcl {
 <#
 .SYNOPSIS
-    Returns Single ACL object
+    Returns all ACL objects
 .DESCRIPTION
-    Allows the user to quickly return a single ACL as refernced by name.  A good way to check for existing ACLs
-    in addition to programatic ACL manipulation.
-.PARAMETER name
-    ACL name
+    Allows the user to quickly return all user ACL objects in the F5.
 .NOTES
     Requires F5-LTM modules from github
 .EXAMPLE
-    Get-SingleAcl -name myACL
+    Get-AllAcl
 
-    Returns the ACL object for ACL myACL
+    Returns the all the ACL objets on the connected F5
 #>
 
     begin {
