@@ -40,7 +40,7 @@
 
     }
     process {
-        foreach ($itemname in $Name) {
+        foreach ($subnet in $dstSubnet) {
             #build
 
     $baseAclEntry =  @(
@@ -48,7 +48,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 20
 		'dstStartPort' = 20
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -60,7 +60,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 22
 		'dstStartPort' = 22
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -72,7 +72,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 80
 		'dstStartPort' = 80
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -84,7 +84,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 443
 		'dstStartPort' = 443
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -96,7 +96,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 1433
 		'dstStartPort' = 1433
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -108,7 +108,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 1521
 		'dstStartPort' = 1521
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -120,7 +120,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 1532
 		'dstStartPort' = 1532
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -132,7 +132,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 3306
 		'dstStartPort' = 3306
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -144,7 +144,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 3389
 		'dstStartPort' = 3389
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -156,7 +156,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 3389
 		'dstStartPort' = 3389
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 17
 		'scheme' = 'any'
@@ -168,7 +168,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 5433
 		'dstStartPort' = 5432
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -180,7 +180,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 5900
 		'dstStartPort' = 5900
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -193,7 +193,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 7331
 		'dstStartPort' = 7331
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -205,7 +205,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 8000
 		'dstStartPort' = 8000
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -217,7 +217,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 8080
 		'dstStartPort' = 8080
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -229,7 +229,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 8081
 		'dstStartPort' = 8081
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -241,7 +241,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 8443
 		'dstStartPort' = 8443
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -253,7 +253,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 8686
 		'dstStartPort' = 8686
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -265,7 +265,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 27017
 		'dstStartPort' = 27017
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -277,7 +277,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 139
 		'dstStartPort' = 135
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 6
 		'scheme' = 'any'
@@ -289,7 +289,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 139
 		'dstStartPort' = 135
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 17
 		'scheme' = 'any'
@@ -301,7 +301,7 @@
 		'action' = 'allow'
 		'dstEndPort' = 0
 		'dstStartPort' = 0
-		'dstSubnet' = "$dstSubnet"
+		'dstSubnet' = "$subnet"
 		'log' = 'packet'
 		'protocol' = 1
 		'scheme' = 'any'
