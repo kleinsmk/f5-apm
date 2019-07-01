@@ -31,8 +31,8 @@
         [Parameter(Mandatory=$true)]
         [string[]]$name='',
 
-        [Parameter(Mandatory=$true)]
-        [string]$action,
+        [Parameter(Mandatory=$false)]
+        [string]$action ="allow",
 
         [Alias('aws subnet')]
         [Parameter(Mandatory=$true)]

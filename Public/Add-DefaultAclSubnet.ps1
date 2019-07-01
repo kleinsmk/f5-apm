@@ -27,8 +27,8 @@
         [Parameter(Mandatory=$true)]
 		[string[]]$name,
 		
-		[Parameter(Mandatory=$true)]
-        [string]$action,
+		[Parameter(Mandatory=$false)]
+        [string]$action="allow",
 
         [Alias("Subnet")]
         [Parameter(Mandatory=$true)]
