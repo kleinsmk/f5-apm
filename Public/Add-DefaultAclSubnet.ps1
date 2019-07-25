@@ -25,11 +25,14 @@
         
         [Alias("existing acl Name")]
         [Parameter(Mandatory=$true)]
-        [string[]]$name='',
+		[string[]]$name,
+		
+		[Parameter(Mandatory=$false)]
+        [string]$action="allow",
 
         [Alias("Subnet")]
         [Parameter(Mandatory=$true)]
-        [string[]]$dstSubnet=''
+        [string[]]$dstSubnet
 
 
     )
@@ -45,7 +48,7 @@
 
     $baseAclEntry =  @(
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 20
 		'dstStartPort' = 20
 		'dstSubnet' = "$subnet"
@@ -57,7 +60,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 22
 		'dstStartPort' = 22
 		'dstSubnet' = "$subnet"
@@ -69,7 +72,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 80
 		'dstStartPort' = 80
 		'dstSubnet' = "$subnet"
@@ -81,7 +84,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 443
 		'dstStartPort' = 443
 		'dstSubnet' = "$subnet"
@@ -93,7 +96,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 1433
 		'dstStartPort' = 1433
 		'dstSubnet' = "$subnet"
@@ -105,7 +108,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 1521
 		'dstStartPort' = 1521
 		'dstSubnet' = "$subnet"
@@ -117,7 +120,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 1532
 		'dstStartPort' = 1532
 		'dstSubnet' = "$subnet"
@@ -129,7 +132,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 3306
 		'dstStartPort' = 3306
 		'dstSubnet' = "$subnet"
@@ -141,7 +144,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 3389
 		'dstStartPort' = 3389
 		'dstSubnet' = "$subnet"
@@ -153,7 +156,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
     [PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 3389
 		'dstStartPort' = 3389
 		'dstSubnet' = "$subnet"
@@ -165,7 +168,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 5433
 		'dstStartPort' = 5432
 		'dstSubnet' = "$subnet"
@@ -177,7 +180,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 5900
 		'dstStartPort' = 5900
 		'dstSubnet' = "$subnet"
@@ -190,7 +193,7 @@
 	},
 
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 7331
 		'dstStartPort' = 7331
 		'dstSubnet' = "$subnet"
@@ -202,7 +205,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 8000
 		'dstStartPort' = 8000
 		'dstSubnet' = "$subnet"
@@ -214,7 +217,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 8080
 		'dstStartPort' = 8080
 		'dstSubnet' = "$subnet"
@@ -226,7 +229,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 8081
 		'dstStartPort' = 8081
 		'dstSubnet' = "$subnet"
@@ -238,7 +241,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 8443
 		'dstStartPort' = 8443
 		'dstSubnet' = "$subnet"
@@ -250,7 +253,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 8686
 		'dstStartPort' = 8686
 		'dstSubnet' = "$subnet"
@@ -262,7 +265,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 27017
 		'dstStartPort' = 27017
 		'dstSubnet' = "$subnet"
@@ -274,7 +277,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 139
 		'dstStartPort' = 135
 		'dstSubnet' = "$subnet"
@@ -286,7 +289,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 139
 		'dstStartPort' = 135
 		'dstSubnet' = "$subnet"
@@ -298,7 +301,7 @@
 		'srcSubnet' = '0.0.0.0/0'
 	},
 	[PSCustomObject]@{
-		'action' = 'allow'
+		'action' = "$action"
 		'dstEndPort' = 0
 		'dstStartPort' = 0
 		'dstSubnet' = "$subnet"
