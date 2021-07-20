@@ -306,7 +306,7 @@
 		'dstStartPort' = 6443
 		'dstSubnet' = "$subnet"
 		'log' = 'packet'
-		'protocol' = 17
+		'protocol' = 6
 		'scheme' = 'any'
 		'srcEndPort' = 0
 		'srcStartPort' = 0
