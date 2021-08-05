@@ -302,6 +302,18 @@
 	},
 	[PSCustomObject]@{
 		'action' = "$action"
+		'dstEndPort' = 6443
+		'dstStartPort' = 6443
+		'dstSubnet' = "$subnet"
+		'log' = 'packet'
+		'protocol' = 6
+		'scheme' = 'any'
+		'srcEndPort' = 0
+		'srcStartPort' = 0
+		'srcSubnet' = '0.0.0.0/0'
+	},
+	[PSCustomObject]@{
+		'action' = "$action"
 		'dstEndPort' = 0
 		'dstStartPort' = 0
 		'dstSubnet' = "$subnet"
